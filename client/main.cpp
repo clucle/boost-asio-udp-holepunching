@@ -62,7 +62,7 @@ private:
 int main()
 {
 	boost::asio::io_service io_service;
-	UDPClient client( io_service, "localhost", "12111" );
+	UDPClient client( io_service, "223.62.188.73", "33867" );
 
 	std::cout << "Input matching Id : ";
 	int id;
