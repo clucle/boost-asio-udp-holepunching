@@ -15,21 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="TcpConnector.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="SignalServer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="SignalServerAcceptor.cpp">
+    <ClCompile Include="TcpAcceptor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SignalServer.h">
+    <ClInclude Include="TcpConnector.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="SignalServerAcceptor.h">
+    <ClInclude Include="TcpAcceptor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
