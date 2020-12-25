@@ -14,17 +14,18 @@
 #include "core/TcpConnector.h"
 
 
-class SignalServer :
-	public TcpConnector,
-	public std::enable_shared_from_this< SignalServer >
+class SignalServer
 {
+public:
+	typedef boost::asio::ip::tcp tcp;
+
 public:
 	SignalServer( tcp::socket socket );
 
-	void test() { ; };
+	void OnRead();
 
-protected:
-	virtual void OnRead() override;
+private:
+	TcpConnectorPtr tcpConnector;
 };
 
 typedef std::shared_ptr< SignalServer > SignalServerPtr;

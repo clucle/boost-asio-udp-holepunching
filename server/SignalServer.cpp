@@ -11,11 +11,16 @@
 
 
 SignalServer::SignalServer( tcp::socket socket ) :
-	TcpConnector( std::move( socket ) )
+	tcpConnector( std::make_shared<TcpConnector>( std::move( socket ) ) )
 {
+	tcpConnector->SetReadCallback(
+		std::bind( &SignalServer::OnRead, this )
+	);
+
+	tcpConnector->OnAccept();
 }
 
 void SignalServer::OnRead()
 {
-	std::cout << "on read called" << '\n';
+	std::cout << "On Read";
 }

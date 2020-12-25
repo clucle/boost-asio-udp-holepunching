@@ -26,16 +26,18 @@ public:
 
 	void OnAccept();
 
+public:
+	void SetReadCallback( std::function< void( void ) > readCallback );
+
 private:
 	void _Read();
 
 	void _OnRead();
 
-protected:
-	virtual void OnRead();
-
 private:
 	tcp::socket m_socket;
+
+	std::function< void( void ) > m_readCallback;
 
 	enum { MAX_LENGTH = 1024 };
 	char m_data[ MAX_LENGTH ];

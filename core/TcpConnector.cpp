@@ -18,7 +18,12 @@ TcpConnector::TcpConnector( tcp::socket socket ) :
 
 void TcpConnector::OnAccept()
 {
-    std::cout << "Test Accept" << '\n';
+    _Read();
+}
+
+void TcpConnector::SetReadCallback( std::function< void( void ) > readCallback )
+{
+    m_readCallback = readCallback;
 }
 
 void TcpConnector::_Read()
@@ -41,14 +46,7 @@ void TcpConnector::_Read()
 
 void TcpConnector::_OnRead()
 {
-    OnRead();
-
-    std::cout << m_data << '\n';
+    m_readCallback();
 
     _Read();
-}
-
-void TcpConnector::OnRead()
-{
-    std::cout << "need implement" << '\n';
 }

@@ -25,7 +25,7 @@ public:
         const tcp::endpoint& endpoint );
 
 protected:
-    virtual void Accept();
+    virtual void Accept() = 0;
 
 protected:
     tcp::acceptor m_acceptor;

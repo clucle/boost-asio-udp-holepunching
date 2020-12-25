@@ -17,6 +17,7 @@ SignalServerAcceptor::SignalServerAcceptor(
 	const tcp::endpoint& endpoint ) :
 	TcpAcceptor( ioContext, endpoint )
 {
+    std::cout << "Server Open " << endpoint.address().to_string() << ':' << endpoint.port() << '\n';
     Accept();
 }
 
@@ -27,7 +28,8 @@ void SignalServerAcceptor::Accept()
         {
             if ( !ec )
             {
-                std::make_shared< SignalServer >( std::move( socket ) )->OnAccept();
+                std::cout << "accept user" << '\n';
+                std::make_shared< SignalServer >( std::move( socket ) );
             }
             Accept();
         } );
