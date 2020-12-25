@@ -13,6 +13,7 @@
 
 #include <iostream>
 #include <boost/asio.hpp>
+#include "PacketBuffer.h"
 
 
 class TcpConnector
@@ -30,7 +31,9 @@ public:
 	void SetReadCallback( std::function< void( void ) > readCallback );
 
 private:
-	void _Read();
+	void _ReadHeader();
+
+	void _ReadBody();
 
 	void _OnRead();
 
@@ -39,8 +42,7 @@ private:
 
 	std::function< void( void ) > m_readCallback;
 
-	enum { MAX_LENGTH = 1024 };
-	char m_data[ MAX_LENGTH ];
+	PacketBuffer buffer;
 };
 
 typedef std::shared_ptr< TcpConnector > TcpConnectorPtr;

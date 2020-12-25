@@ -142,10 +142,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="PacketBuffer.cpp" />
     <ClCompile Include="TcpAcceptor.cpp" />
     <ClCompile Include="TcpConnector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="PacketBuffer.h" />
     <ClInclude Include="TcpAcceptor.h" />
     <ClInclude Include="TcpConnector.h" />
   </ItemGroup>
