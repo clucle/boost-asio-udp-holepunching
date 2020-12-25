@@ -28,7 +28,10 @@ public:
 	void OnAccept();
 
 public:
-	void SetReadCallback( std::function< void( void ) > readCallback );
+	void Write( PacketBuffer& packetBuffer );
+
+public:
+	void SetReadCallback( std::function< void( PacketBuffer& ) > readCallback );
 
 private:
 	void _ReadHeader();
@@ -40,7 +43,7 @@ private:
 private:
 	tcp::socket m_socket;
 
-	std::function< void( void ) > m_readCallback;
+	std::function< void( PacketBuffer& ) > m_readCallback;
 
 	PacketBuffer buffer;
 };

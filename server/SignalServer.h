@@ -11,6 +11,7 @@
 
 #define BOOST_ALL_NO_LIB
 
+#include "core/PacketBuffer.h"
 #include "core/TcpConnector.h"
 
 
@@ -22,7 +23,7 @@ public:
 public:
 	SignalServer( tcp::socket socket );
 
-	void OnRead();
+	void OnRead( PacketBuffer& packetBuffer );
 
 private:
 	TcpConnectorPtr tcpConnector;

@@ -14,13 +14,13 @@ SignalServer::SignalServer( tcp::socket socket ) :
 	tcpConnector( std::make_shared<TcpConnector>( std::move( socket ) ) )
 {
 	tcpConnector->SetReadCallback(
-		std::bind( &SignalServer::OnRead, this )
+		std::bind( &SignalServer::OnRead, this, std::placeholders::_1 )
 	);
 
 	tcpConnector->OnAccept();
 }
 
-void SignalServer::OnRead()
+void SignalServer::OnRead( PacketBuffer& packetBuffer )
 {
-	std::cout << "On Read";
+	tcpConnector->Write( packetBuffer );
 }

@@ -7,6 +7,7 @@
  *********************************************************************/
 
 
+#include "PacketBuffer.h"
 #include "TcpConnector.h"
 
 
@@ -20,7 +21,19 @@ void TcpConnector::OnAccept()
     _ReadHeader();
 }
 
-void TcpConnector::SetReadCallback( std::function< void( void ) > readCallback )
+void TcpConnector::Write( PacketBuffer& packetBuffer )
+{
+    boost::asio::async_write( m_socket,
+        boost::asio::buffer( packetBuffer.GetData(), packetBuffer.GetLength() ),
+        []( boost::system::error_code ec, std::size_t /*length*/ ) {
+            if ( ec )
+            {
+                std::cerr << "write fail" << '\n';
+            }
+        } );
+}
+
+void TcpConnector::SetReadCallback( std::function< void( PacketBuffer& ) > readCallback )
 {
     m_readCallback = readCallback;
 }
@@ -63,9 +76,7 @@ void TcpConnector::_ReadBody()
 
 void TcpConnector::_OnRead()
 {
-    std::cout << buffer.GetBody() << '\n';
-
-    m_readCallback();
+    m_readCallback( buffer );
 
     _ReadHeader();
 }
