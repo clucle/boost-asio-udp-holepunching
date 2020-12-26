@@ -24,6 +24,9 @@
     <ClCompile Include="PacketBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="RFC5389Builder.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpConnector.h">
@@ -33,6 +36,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="PacketBuffer.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="RFC5389Builder.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
