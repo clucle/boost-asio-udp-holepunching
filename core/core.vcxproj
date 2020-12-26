@@ -152,6 +152,7 @@
     <ClInclude Include="RFC5389Builder.h" />
     <ClInclude Include="TcpAcceptor.h" />
     <ClInclude Include="TcpConnector.h" />
+    <ClInclude Include="types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
