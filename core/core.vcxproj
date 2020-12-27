@@ -146,6 +146,7 @@
     <ClCompile Include="RFC5389Builder.cpp" />
     <ClCompile Include="TcpAcceptor.cpp" />
     <ClCompile Include="TcpConnector.cpp" />
+    <ClCompile Include="UdpSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PacketBuffer.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="TcpAcceptor.h" />
     <ClInclude Include="TcpConnector.h" />
     <ClInclude Include="types.h" />
+    <ClInclude Include="UdpSocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

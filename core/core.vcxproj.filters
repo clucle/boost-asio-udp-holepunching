@@ -27,6 +27,9 @@
     <ClCompile Include="RFC5389Builder.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="UdpSocket.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TcpConnector.h">
@@ -42,6 +45,9 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="types.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="UdpSocket.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
