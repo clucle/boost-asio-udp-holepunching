@@ -149,6 +149,7 @@
     <ClCompile Include="UdpSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="const.h" />
     <ClInclude Include="PacketBuffer.h" />
     <ClInclude Include="RFC5389Builder.h" />
     <ClInclude Include="TcpAcceptor.h" />

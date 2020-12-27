@@ -40,7 +40,25 @@ int main( int argc, char* argv[] )
 
         // print stun response packet
         for ( size_t i = 0; i < packetSize; i++ )
-            printf( "%d %.2x\n", i,  (unsigned char)( packet[ i ] ) );
+            printf( "%zd %.2x\n", i,  (unsigned char)( packet[ i ] ) );
+
+        // convert XOR_MAPPED_ADDRESS
+        const XOR_MAPPED_ADDRESS* response =
+            reinterpret_cast< const XOR_MAPPED_ADDRESS* >( packet + sizeof( RFC5389 ) );
+
+        AF_INET;
+
+        UInt8  family = response->family;
+        UInt16 port   = response->port;
+        UInt8  address[ X_ADDRESS_SIZE ];
+        memcpy( address, response->xAddress, X_ADDRESS_SIZE );
+        // 20
+
+        std::cout << "family : " << (int)family << '\n';
+        printf( "%.2x\n", (unsigned char)( family ) );
+        std::cout << "port   : " << port << '\n';
+
+
         printf( "\n" );
 
         int a; std::cin >> a;

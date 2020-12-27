@@ -12,12 +12,6 @@
 #include "types.h"
 
 
-struct RFC5389
-{
-	UInt8 data[ 20 ];
-};
-
-
 class RFC5389Builder
 {
 public:
