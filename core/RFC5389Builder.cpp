@@ -39,10 +39,10 @@ RFC5389 RFC5389Builder::Build()
 	UInt16 messageLengthBigEndian = htons( messageLength );
 	UInt32 magicCookieBigEndian = htonl( magicCookie );
 
-	memcpy( rfc5389.data + 0, &messageTypeBigEndian, 2 );
-	memcpy( rfc5389.data + 2, &messageLengthBigEndian, 2 );
-	memcpy( rfc5389.data + 4, &magicCookieBigEndian, 4 );
-	memcpy( rfc5389.data + 8, transactionId, TRANSACTION_ID_LENGTH );
+	memcpy( &rfc5389.messageType,   &messageTypeBigEndian,   2 );
+	memcpy( &rfc5389.messageLength, &messageLengthBigEndian, 2 );
+	memcpy( &rfc5389.magicCookie,   &magicCookieBigEndian,   4 );
+	memcpy( &rfc5389.transactionId, transactionId,           TRANSACTION_ID_LENGTH );
 
 	return rfc5389;
 }

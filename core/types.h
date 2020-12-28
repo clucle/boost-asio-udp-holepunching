@@ -21,7 +21,27 @@ typedef uint32_t UInt32;
 /// Stun Type
 struct RFC5389
 {
-	UInt8 data[ RFC5389_SIZE ];
+	UInt16 messageType;
+	UInt16 messageLength;
+	UInt32 magicCookie;
+	UInt8 transactionId[ RFC5389_SIZE - 8 ];
+};
+
+const UInt16 STUN_ATTRIBUTES_TYPE_XOR_MAPPED_ADDRESS = 0x20;
+
+
+enum STUN_FAMILY : UInt8
+{
+	IPv4 = 0x1,
+	IPv6 = 0x2,
+
+	MAX
+};
+
+struct STUN_ATTRIBUTES
+{
+	UInt16 type;
+	UInt16 length;
 };
 
 struct XOR_MAPPED_ADDRESS
