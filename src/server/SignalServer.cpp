@@ -8,6 +8,7 @@
 
 
 #include "SignalServer.h"
+#include <functional>
 
 
 SignalServer::SignalServer( tcp::socket socket ) :
