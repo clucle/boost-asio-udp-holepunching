@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="SignalServer.cpp" />
-    <ClCompile Include="SignalServerAcceptor.cpp" />
+    <ClInclude Include="..\includes\server\SignalServer.h" />
+    <ClInclude Include="..\includes\server\SignalServerAcceptor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SignalServer.h" />
-    <ClInclude Include="SignalServerAcceptor.h" />
+    <ClCompile Include="..\src\server\main.cpp" />
+    <ClCompile Include="..\src\server\SignalServer.cpp" />
+    <ClCompile Include="..\src\server\SignalServerAcceptor.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -139,17 +139,17 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;BOOST_ALL_NO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <AdditionalIncludeDirectories>../core;../;%BOOST_ROOT%;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%BOOST_ROOT%;..\includes;..\includes\core;..\includes\server;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%BOOST_ROOT%\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%BOOST_ROOT%\stage\lib;..\includes\server;..\includes\core;..\includes;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <TargetMachine>MachineX64</TargetMachine>
       <AdditionalDependencies>$(SolutionDir)$(PlatformTarget)\$(Configuration)\core.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>

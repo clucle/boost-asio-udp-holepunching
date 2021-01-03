@@ -9,8 +9,6 @@
 
 #pragma once
 
-#define BOOST_ALL_NO_LIB
-
 #include <iostream>
 #include <boost/asio.hpp>
 #include "PacketBuffer.h"

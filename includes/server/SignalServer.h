@@ -9,8 +9,6 @@
 
 #pragma once
 
-#define BOOST_ALL_NO_LIB
-
 #include "core/PacketBuffer.h"
 #include "core/TcpConnector.h"
 

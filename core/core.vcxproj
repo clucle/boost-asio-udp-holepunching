@@ -21,10 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{cae0d5cf-1496-46b6-8157-69be07391962}</ProjectGuid>
+    <ProjectGuid>{1415664d-2f80-4876-9792-ac36123b7150}</ProjectGuid>
     <RootNamespace>core</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>core</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -129,33 +128,33 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;BOOST_ALL_NO_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%BOOST_ROOT%;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%BOOST_ROOT%;..\src\core;..\includes\core;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>%BOOST_ROOT%\stage\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>%BOOST_ROOT%\stage\lib;..\includes\core;..\src\core</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PacketBuffer.cpp" />
-    <ClCompile Include="RFC5389Builder.cpp" />
-    <ClCompile Include="TcpAcceptor.cpp" />
-    <ClCompile Include="TcpConnector.cpp" />
-    <ClCompile Include="UdpSocket.cpp" />
+    <ClCompile Include="..\src\core\PacketBuffer.cpp" />
+    <ClCompile Include="..\src\core\RFC5389Builder.cpp" />
+    <ClCompile Include="..\src\core\TcpAcceptor.cpp" />
+    <ClCompile Include="..\src\core\TcpConnector.cpp" />
+    <ClCompile Include="..\src\core\UdpSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="const.h" />
-    <ClInclude Include="PacketBuffer.h" />
-    <ClInclude Include="RFC5389Builder.h" />
-    <ClInclude Include="TcpAcceptor.h" />
-    <ClInclude Include="TcpConnector.h" />
-    <ClInclude Include="types.h" />
-    <ClInclude Include="UdpSocket.h" />
+    <ClInclude Include="..\includes\core\const.h" />
+    <ClInclude Include="..\includes\core\PacketBuffer.h" />
+    <ClInclude Include="..\includes\core\RFC5389Builder.h" />
+    <ClInclude Include="..\includes\core\TcpAcceptor.h" />
+    <ClInclude Include="..\includes\core\TcpConnector.h" />
+    <ClInclude Include="..\includes\core\types.h" />
+    <ClInclude Include="..\includes\core\UdpSocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

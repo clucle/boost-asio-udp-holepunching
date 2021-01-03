@@ -7,12 +7,10 @@
  *********************************************************************/
 
 
-#define BOOST_ALL_NO_LIB
-
 #include <iostream>
 #include <boost/asio.hpp>
 #include "core/UdpSocket.h"
-#include "RFC5389Builder.h"
+#include "core/RFC5389Builder.h"
 
 
 void print_ip( UInt32 ip )

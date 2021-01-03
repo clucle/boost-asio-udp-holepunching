@@ -15,42 +15,42 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="TcpConnector.cpp">
+    <ClCompile Include="..\src\core\TcpConnector.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="TcpAcceptor.cpp">
+    <ClCompile Include="..\src\core\UdpSocket.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="PacketBuffer.cpp">
+    <ClCompile Include="..\src\core\PacketBuffer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="RFC5389Builder.cpp">
+    <ClCompile Include="..\src\core\RFC5389Builder.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="UdpSocket.cpp">
+    <ClCompile Include="..\src\core\TcpAcceptor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TcpConnector.h">
+    <ClInclude Include="..\includes\core\TcpAcceptor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="TcpAcceptor.h">
+    <ClInclude Include="..\includes\core\TcpConnector.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="PacketBuffer.h">
+    <ClInclude Include="..\includes\core\types.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="RFC5389Builder.h">
+    <ClInclude Include="..\includes\core\UdpSocket.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="types.h">
+    <ClInclude Include="..\includes\core\const.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="UdpSocket.h">
+    <ClInclude Include="..\includes\core\PacketBuffer.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="const.h">
+    <ClInclude Include="..\includes\core\RFC5389Builder.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

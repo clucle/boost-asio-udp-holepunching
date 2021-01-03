@@ -9,8 +9,6 @@
 
 #pragma once
 
-#define BOOST_ALL_NO_LIB
-
 #include <string>
 #include <boost/asio.hpp>
 
