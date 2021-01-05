@@ -22,13 +22,15 @@ public:
 
 	RFC5389 Build();
 
+	void SetMessageClass( STUN_MESSAGE_CLASS stunMessageClass );
+
 private:
 	void _GenerateRandomTransactionId();
 
 private:
-	UInt16 messageType;
-	UInt16 messageLength;
-	UInt32 magicCookie;
-	UInt8  transactionId[ TRANSACTION_ID_LENGTH ];
+	      UInt16 messageClass;
+	      UInt16 messageLength;
+	const UInt32 magicCookie;
+	      UInt8  transactionId[ TRANSACTION_ID_LENGTH ];
 };
 

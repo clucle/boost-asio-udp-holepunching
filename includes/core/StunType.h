@@ -24,6 +24,14 @@ struct RFC5389
 	UInt8 transactionId[ RFC5389_TRANSACTION_ID_SIZE ];
 };
 
+enum class STUN_MESSAGE_CLASS : UInt16
+{
+	REQUEST = 0x00,
+	INDICATION = 0x01,
+	RESPONSE_SUCCESS = 0x02,
+	RESPONSE_ERROR = 0x03
+};
+
 enum STUN_FAMILY : UInt8
 {
 	IPv4 = 0x1,
