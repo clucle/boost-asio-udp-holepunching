@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "types.h"
+#include "StunType.h"
 
 
 class RFC5389Builder

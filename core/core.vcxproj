@@ -151,6 +151,7 @@
     <ClInclude Include="..\includes\core\const.h" />
     <ClInclude Include="..\includes\core\PacketBuffer.h" />
     <ClInclude Include="..\includes\core\RFC5389Builder.h" />
+    <ClInclude Include="..\includes\core\StunType.h" />
     <ClInclude Include="..\includes\core\TcpAcceptor.h" />
     <ClInclude Include="..\includes\core\TcpConnector.h" />
     <ClInclude Include="..\includes\core\types.h" />
