@@ -15,6 +15,7 @@ add_executable(server ${CPP_FILES})
 
 target_link_libraries(server ${Boost_LIBRARIES})
 target_link_libraries(server ${CMAKE_SOURCE_DIR}/build/core/libcore.a)
+target_link_libraries(server ${CMAKE_SOURCE_DIR}/build/network/libnetwork.a)
 
 set_target_properties(server PROPERTIES
     CXX_STANDARD 17

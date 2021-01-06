@@ -141,21 +141,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\core\PacketBuffer.cpp" />
     <ClCompile Include="..\src\core\RFC5389Builder.cpp" />
-    <ClCompile Include="..\src\core\TcpAcceptor.cpp" />
-    <ClCompile Include="..\src\core\TcpConnector.cpp" />
-    <ClCompile Include="..\src\core\UdpSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\includes\core\const.h" />
-    <ClInclude Include="..\includes\core\PacketBuffer.h" />
     <ClInclude Include="..\includes\core\RFC5389Builder.h" />
     <ClInclude Include="..\includes\core\StunType.h" />
-    <ClInclude Include="..\includes\core\TcpAcceptor.h" />
-    <ClInclude Include="..\includes\core\TcpConnector.h" />
     <ClInclude Include="..\includes\core\types.h" />
-    <ClInclude Include="..\includes\core\UdpSocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

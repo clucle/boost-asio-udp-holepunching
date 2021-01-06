@@ -14,5 +14,6 @@ add_executable(client ${CPP_FILES})
 
 target_link_libraries(client ${Boost_LIBRARIES})
 target_link_libraries(client ${CMAKE_SOURCE_DIR}/build/core/libcore.a)
+target_link_libraries(client ${CMAKE_SOURCE_DIR}/build/network/libnetwork.a)
 
 install (TARGETS client DESTINATION bin)

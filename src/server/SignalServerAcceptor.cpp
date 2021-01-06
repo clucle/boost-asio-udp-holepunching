@@ -9,7 +9,7 @@
 
 #include "SignalServerAcceptor.h"
 #include "SignalServer.h"
-#include "core/TcpConnector.h"
+#include "network/TcpConnector.h"
 
 
 SignalServerAcceptor::SignalServerAcceptor(

@@ -9,8 +9,8 @@
 
 #pragma once
 
-#include "core/PacketBuffer.h"
-#include "core/TcpConnector.h"
+#include "network/PacketBuffer.h"
+#include "network/TcpConnector.h"
 
 
 class SignalServer
