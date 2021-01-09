@@ -10,18 +10,9 @@
 #include <iostream>
 #include <boost/asio.hpp>
 #include "core/RFC5389Builder.h"
+#include "common/utils.h"
 #include "network/UdpSocket.h"
 
-
-void print_ip( UInt32 ip )
-{
-    unsigned char bytes[ 4 ];
-    bytes[ 0 ] = ip & 0xFF;
-    bytes[ 1 ] = ( ip >> 8 ) & 0xFF;
-    bytes[ 2 ] = ( ip >> 16 ) & 0xFF;
-    bytes[ 3 ] = ( ip >> 24 ) & 0xFF;
-    printf( "%d.%d.%d.%d\n", bytes[ 3 ], bytes[ 2 ], bytes[ 1 ], bytes[ 0 ] );
-}
 
 int main( int argc, char* argv[] )
 {
@@ -74,6 +65,7 @@ int main( int argc, char* argv[] )
             printf( "%.2x ", (unsigned char)( foo[ i ] ) );
         std::cout << '\n';
 
+        PrintIP( 0 );
 
         return 0;
 
@@ -143,7 +135,7 @@ int main( int argc, char* argv[] )
                             ( address[ 2 ] << 8 ) |
                             ( address[ 3 ] << 0 );
                         ip ^= magicCookie;
-                        print_ip( ip );
+                        PrintIP( ip );
 
                         std::cout << std::dec << "port   : " << port << '\n';
                         break;
