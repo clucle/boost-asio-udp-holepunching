@@ -32,43 +32,6 @@ int main( int argc, char* argv[] )
         rfcBuilder.SetMessageClass( STUN_MESSAGE_CLASS::REQUEST );
         rfc5389 = rfcBuilder.Build();
         
-        memcpy( foo, &rfc5389, sizeof foo );
-        // print stun response packet
-        for ( size_t i = 0; i < sizeof foo; i++ )
-            printf( "%.2x ", (unsigned char)( foo[ i ] ) );
-        std::cout << '\n';
-
-        rfcBuilder.SetMessageClass( STUN_MESSAGE_CLASS::INDICATION );
-        rfc5389 = rfcBuilder.Build();
-
-        memcpy( foo, &rfc5389, sizeof foo );
-        // print stun response packet
-        for ( size_t i = 0; i < sizeof foo; i++ )
-            printf( "%.2x ", (unsigned char)( foo[ i ] ) );
-        std::cout << '\n';
-
-        rfcBuilder.SetMessageClass( STUN_MESSAGE_CLASS::RESPONSE_SUCCESS );
-        rfc5389 = rfcBuilder.Build();
-
-        memcpy( foo, &rfc5389, sizeof foo );
-        // print stun response packet
-        for ( size_t i = 0; i < sizeof foo; i++ )
-            printf( "%.2x ",(unsigned char)( foo[ i ] ) );
-        std::cout << '\n';
-
-        rfcBuilder.SetMessageClass( STUN_MESSAGE_CLASS::RESPONSE_ERROR );
-        rfc5389 = rfcBuilder.Build();
-
-        memcpy( foo, &rfc5389, sizeof foo );
-        // print stun response packet
-        for ( size_t i = 0; i < sizeof foo; i++ )
-            printf( "%.2x ", (unsigned char)( foo[ i ] ) );
-        std::cout << '\n';
-
-        PrintIP( 0 );
-
-        return 0;
-
         // send stun request packet
         udpSocket.SendTo( (char*)( &rfc5389 ), sizeof( RFC5389 ) );
 
