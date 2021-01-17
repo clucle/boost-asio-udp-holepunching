@@ -83,7 +83,7 @@ int main( int argc, char* argv[] )
                         packet + sizeof( RFC5389 ) + sizeof( STUN_ATTRIBUTES ) );
 
                 UInt8  family = xorMappedAddress->family;
-                UInt16 port   = ntohs( xorMappedAddress->port );
+                UInt16 port   = ntohs( xorMappedAddress->port ) ^ ( magicCookie >> 16 );
                 UInt8  address[ X_ADDRESS_SIZE ];
 
                 switch ( family )
