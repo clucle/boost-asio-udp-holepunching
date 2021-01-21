@@ -15,7 +15,7 @@
 class RFC5389Builder
 {
 public:
-	enum { TRANSACTION_ID_LENGTH = 16 };
+	enum { TRANSACTION_ID_LENGTH = 12 };
 
 public:
 	RFC5389Builder();
