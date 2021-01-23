@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClInclude Include="..\includes\core\const.h" />
     <ClInclude Include="..\includes\core\RFC5389Builder.h" />
+    <ClInclude Include="..\includes\core\Singleton.h" />
     <ClInclude Include="..\includes\core\StunType.h" />
     <ClInclude Include="..\includes\core\types.h" />
   </ItemGroup>

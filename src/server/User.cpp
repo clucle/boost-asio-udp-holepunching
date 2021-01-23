@@ -25,6 +25,16 @@ User::User( tcp::socket socket ) :
 	m_tcpConnector->OnAccept();
 }
 
+void User::SetId( UInt32 id )
+{
+	m_id = id;
+}
+
+UInt32 User::GetId()
+{
+	return m_id;
+}
+
 void User::OnRead( NetworkMessage& networkMessage, TcpConnectorPtr tcpConnector )
 {
 	std::cout << this << '\n';

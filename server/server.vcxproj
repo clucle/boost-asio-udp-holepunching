@@ -21,11 +21,13 @@
   <ItemGroup>
     <ClInclude Include="..\includes\server\SignalServerAcceptor.h" />
     <ClInclude Include="..\includes\server\User.h" />
+    <ClInclude Include="..\includes\server\UserManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\server\main.cpp" />
     <ClCompile Include="..\src\server\SignalServerAcceptor.cpp" />
     <ClCompile Include="..\src\server\User.cpp" />
+    <ClCompile Include="..\src\server\UserManager.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

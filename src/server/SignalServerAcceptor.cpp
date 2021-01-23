@@ -7,9 +7,10 @@
  *********************************************************************/
 
 
+#include "network/TcpConnector.h"
 #include "SignalServerAcceptor.h"
 #include "User.h"
-#include "network/TcpConnector.h"
+#include "UserManager.h"
 
 
 SignalServerAcceptor::SignalServerAcceptor(
@@ -29,7 +30,7 @@ void SignalServerAcceptor::Accept()
             if ( !ec )
             {
                 std::cout << "accept user" << '\n';
-                std::make_shared< User >( std::move( socket ) );
+                UserManager::GetInstance().AddUser( std::move( socket ) );
             }
             Accept();
         } );
