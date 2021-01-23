@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\includes\server\SignalServer.h">
+    <ClInclude Include="..\includes\server\SignalServerAcceptor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\includes\server\SignalServerAcceptor.h">
+    <ClInclude Include="..\includes\server\User.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\server\SignalServer.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\server\SignalServerAcceptor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="..\src\server\main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\User.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

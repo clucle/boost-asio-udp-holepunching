@@ -1,5 +1,5 @@
 /*****************************************************************//**
- * \file   SignalServer.h
+ * \file   User.h
  * \brief  
  * 
  * \author clucle
@@ -13,13 +13,13 @@
 #include "network/TcpConnector.h"
 
 
-class SignalServer
+class User
 {
 public:
 	typedef boost::asio::ip::tcp tcp;
 
 public:
-	SignalServer( tcp::socket socket );
+	User( tcp::socket socket );
 
 	void OnRead( NetworkMessage& networkMessage, TcpConnectorPtr tcpConnector );
 
@@ -27,4 +27,4 @@ private:
 	TcpConnectorPtr m_tcpConnector;
 };
 
-typedef std::shared_ptr< SignalServer > SignalServerPtr;
+typedef std::shared_ptr< User > UserPtr;

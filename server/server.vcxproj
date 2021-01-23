@@ -19,13 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\includes\server\SignalServer.h" />
     <ClInclude Include="..\includes\server\SignalServerAcceptor.h" />
+    <ClInclude Include="..\includes\server\User.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\server\main.cpp" />
-    <ClCompile Include="..\src\server\SignalServer.cpp" />
     <ClCompile Include="..\src\server\SignalServerAcceptor.cpp" />
+    <ClCompile Include="..\src\server\User.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

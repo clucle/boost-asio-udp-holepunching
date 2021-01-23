@@ -8,7 +8,7 @@
 
 
 #include "SignalServerAcceptor.h"
-#include "SignalServer.h"
+#include "User.h"
 #include "network/TcpConnector.h"
 
 
@@ -29,7 +29,7 @@ void SignalServerAcceptor::Accept()
             if ( !ec )
             {
                 std::cout << "accept user" << '\n';
-                std::make_shared< SignalServer >( std::move( socket ) );
+                std::make_shared< User >( std::move( socket ) );
             }
             Accept();
         } );

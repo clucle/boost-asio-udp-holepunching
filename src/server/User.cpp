@@ -1,5 +1,5 @@
 /*****************************************************************//**
- * \file   SignalServer.cpp
+ * \file   User.cpp
  * \brief  
  * 
  * \author clucle
@@ -7,22 +7,29 @@
  *********************************************************************/
 
 
-#include "SignalServer.h"
+#include "User.h"
 #include <functional>
 
 
-SignalServer::SignalServer( tcp::socket socket ) :
+User::User( tcp::socket socket ) :
 	m_tcpConnector( std::make_shared<TcpConnector>( std::move( socket ) ) )
 {
+
+	std::cout << this << '\n';
+	std::cout << &(this->m_tcpConnector) << '\n';
+
 	m_tcpConnector->SetReadCallback(
-		std::bind( &SignalServer::OnRead, this, std::placeholders::_1, m_tcpConnector )
+		std::bind( &User::OnRead, this, std::placeholders::_1, m_tcpConnector )
 	);
 
 	m_tcpConnector->OnAccept();
 }
 
-void SignalServer::OnRead( NetworkMessage& networkMessage, TcpConnectorPtr tcpConnector )
+void User::OnRead( NetworkMessage& networkMessage, TcpConnectorPtr tcpConnector )
 {
+	std::cout << this << '\n';
+	std::cout << &(this->m_tcpConnector) << '\n';
+
 	networkMessage.ReadyToRead();
 	std::cout << networkMessage.ReadString() << '\n';
 	
