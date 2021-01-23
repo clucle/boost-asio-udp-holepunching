@@ -9,7 +9,7 @@
 
 #pragma once
 
-#include "network/PacketBuffer.h"
+#include "network/NetworkMessage.h"
 #include "network/TcpConnector.h"
 
 
@@ -21,10 +21,10 @@ public:
 public:
 	SignalServer( tcp::socket socket );
 
-	void OnRead( PacketBuffer& packetBuffer );
+	void OnRead( NetworkMessage& networkMessage, TcpConnectorPtr tcpConnector );
 
 private:
-	TcpConnectorPtr tcpConnector;
+	TcpConnectorPtr m_tcpConnector;
 };
 
 typedef std::shared_ptr< SignalServer > SignalServerPtr;

@@ -143,14 +143,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\includes\network\PacketBuffer.h" />
+    <ClInclude Include="..\includes\network\NetworkMessage.h" />
     <ClInclude Include="..\includes\network\TcpAcceptor.h" />
+    <ClInclude Include="..\includes\network\TcpClient.h" />
     <ClInclude Include="..\includes\network\TcpConnector.h" />
     <ClInclude Include="..\includes\network\UdpSocket.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\network\PacketBuffer.cpp" />
+    <ClCompile Include="..\src\network\NetworkMessage.cpp" />
     <ClCompile Include="..\src\network\TcpAcceptor.cpp" />
+    <ClCompile Include="..\src\network\TcpClient.cpp" />
     <ClCompile Include="..\src\network\TcpConnector.cpp" />
     <ClCompile Include="..\src\network\UdpSocket.cpp" />
   </ItemGroup>

@@ -12,16 +12,19 @@
 
 
 SignalServer::SignalServer( tcp::socket socket ) :
-	tcpConnector( std::make_shared<TcpConnector>( std::move( socket ) ) )
+	m_tcpConnector( std::make_shared<TcpConnector>( std::move( socket ) ) )
 {
-	tcpConnector->SetReadCallback(
-		std::bind( &SignalServer::OnRead, this, std::placeholders::_1 )
+	m_tcpConnector->SetReadCallback(
+		std::bind( &SignalServer::OnRead, this, std::placeholders::_1, m_tcpConnector )
 	);
 
-	tcpConnector->OnAccept();
+	m_tcpConnector->OnAccept();
 }
 
-void SignalServer::OnRead( PacketBuffer& packetBuffer )
+void SignalServer::OnRead( NetworkMessage& networkMessage, TcpConnectorPtr tcpConnector )
 {
-	tcpConnector->Write( packetBuffer );
+	networkMessage.ReadyToRead();
+	std::cout << networkMessage.ReadString() << '\n';
+	
+	tcpConnector->Write( networkMessage );
 }

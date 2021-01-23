@@ -12,12 +12,37 @@
 #include "core/RFC5389Builder.h"
 #include "common/utils.h"
 #include "network/UdpSocket.h"
+#include "network/TcpClient.h"
+#include "network/NetworkMessage.h"
 
 
 int main( int argc, char* argv[] )
 {
     try
     {
+        boost::asio::io_context io_context;
+
+        using boost::asio::ip::tcp;
+        tcp::resolver resolver( io_context );
+        auto endpoints = resolver.resolve( "192.168.0.29", "12111" );
+        TCPClient c( io_context, endpoints );
+
+        std::thread t( [&io_context]() { io_context.run(); } );
+
+        char line[ NetworkMessage::MAX_BODY_LENGTH + 1 ];
+        while ( std::cin.getline( line, NetworkMessage::MAX_BODY_LENGTH + 1 ) )
+        {
+            NetworkMessage msg;
+            msg.AppendString( line );
+            msg.EncodeHeader();
+            c.Write( msg );
+        }
+
+        c.Close();
+        t.join();
+
+
+        /*
         boost::asio::io_context ioContext;
         const char* stunServerAddr = "stun.l.google.com";
         const char* stunServerPort = "19302";
@@ -41,10 +66,6 @@ int main( int argc, char* argv[] )
         const char* packet = udpSocket.GetData();
         size_t packetSize = udpSocket.GetDataLength();
 
-        // print stun response packet
-        for ( size_t i = 0; i < packetSize; i++ )
-            printf( "%zd %.2x\n", i,  (unsigned char)( packet[ i ] ) );
-
         const RFC5389* response =
             reinterpret_cast< const RFC5389* >( packet );
 
@@ -52,10 +73,6 @@ int main( int argc, char* argv[] )
         UInt16 messageLength = ntohs( response->messageLength );
         UInt32 magicCookie   = ntohl( response->magicCookie );
 
-        std::cout << std::hex << static_cast<int>( messageType ) << '\n';
-        std::cout << std::hex << static_cast<int>( messageLength ) << '\n';
-        std::cout << std::hex << static_cast<int>( magicCookie ) << '\n';
-        
         // convert STUN ATTRIBUTES
         const STUN_ATTRIBUTES* attributes =
             reinterpret_cast< const STUN_ATTRIBUTES* >( packet + sizeof( RFC5389 ) );
@@ -68,11 +85,6 @@ int main( int argc, char* argv[] )
 
         UInt16 type   = ntohs( attributes->type );
         UInt16 length = ntohs( attributes->length );
-
-        std::cout << "attributes : " << (int)type << '\n';
-        printf( "%.2x\n", (unsigned char)( type ) );
-        std::cout << "length : " << (int)length << '\n';
-        printf( "%.2x\n", (unsigned char)( length ) );
 
         switch ( type )
         {
@@ -119,6 +131,7 @@ int main( int argc, char* argv[] )
             }
 
         }
+        */
     }
     catch ( std::exception& e )
     {

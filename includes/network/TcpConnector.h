@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include <boost/asio.hpp>
-#include "PacketBuffer.h"
+#include "NetworkMessage.h"
 
 
 class TcpConnector
@@ -26,10 +26,10 @@ public:
 	void OnAccept();
 
 public:
-	void Write( PacketBuffer& packetBuffer );
+	void Write( NetworkMessage& packetBuffer );
 
 public:
-	void SetReadCallback( std::function< void( PacketBuffer& ) > readCallback );
+	void SetReadCallback( std::function< void( NetworkMessage& ) > readCallback );
 
 private:
 	void _ReadHeader();
@@ -41,9 +41,9 @@ private:
 private:
 	tcp::socket m_socket;
 
-	std::function< void( PacketBuffer& ) > m_readCallback;
+	std::function< void( NetworkMessage& ) > m_readCallback;
 
-	PacketBuffer buffer;
+	NetworkMessage buffer;
 };
 
 typedef std::shared_ptr< TcpConnector > TcpConnectorPtr;

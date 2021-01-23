@@ -21,10 +21,13 @@
     <ClInclude Include="..\includes\network\UdpSocket.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\includes\network\PacketBuffer.h">
+    <ClInclude Include="..\includes\network\TcpAcceptor.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="..\includes\network\TcpAcceptor.h">
+    <ClInclude Include="..\includes\network\NetworkMessage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\network\TcpClient.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,10 +38,13 @@
     <ClCompile Include="..\src\network\UdpSocket.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\network\PacketBuffer.cpp">
+    <ClCompile Include="..\src\network\TcpAcceptor.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\network\TcpAcceptor.cpp">
+    <ClCompile Include="..\src\network\NetworkMessage.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\network\TcpClient.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
