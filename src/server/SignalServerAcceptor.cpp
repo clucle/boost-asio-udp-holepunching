@@ -30,7 +30,8 @@ void SignalServerAcceptor::Accept()
             if ( !ec )
             {
                 std::cout << "accept user" << '\n';
-                UserManager::GetInstance().AddUser( std::move( socket ) );
+                UserPtr user = UserManager::GetInstance().AddUser( std::move( socket ) );
+                user->Initialize();
             }
             Accept();
         } );

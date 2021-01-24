@@ -73,8 +73,9 @@ void TCPClient::_ReadBody()
         {
             if ( !ec )
             {
-                std::cout.write( m_networkMessage.GetBody(), m_networkMessage.GetBodyLength() );
-                std::cout << "\n";
+                m_networkMessage.ReadyToRead();
+                std::cout << m_networkMessage.ReadString() << '\n';
+
                 _ReadHeader();
             }
             else

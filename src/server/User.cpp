@@ -19,10 +19,15 @@ User::User( tcp::socket socket ) :
 	std::cout << &(this->m_tcpConnector) << '\n';
 
 	m_tcpConnector->SetReadCallback(
-		std::bind( &User::OnRead, this, std::placeholders::_1, m_tcpConnector )
+		std::bind( &User::OnRead, this, std::placeholders::_1 )
 	);
 
 	m_tcpConnector->OnAccept();
+}
+
+void User::Initialize()
+{
+	m_protocol = std::make_shared< SignalServerProtocol >( shared_from_this() );
 }
 
 void User::SetId( UInt32 id )
@@ -35,13 +40,12 @@ UInt32 User::GetId()
 	return m_id;
 }
 
-void User::OnRead( NetworkMessage& networkMessage, TcpConnectorPtr tcpConnector )
+void User::OnRead( NetworkMessage& networkMessage )
 {
-	std::cout << this << '\n';
-	std::cout << &(this->m_tcpConnector) << '\n';
+	m_protocol->OnRecvMessage( networkMessage );
+}
 
-	networkMessage.ReadyToRead();
-	std::cout << networkMessage.ReadString() << '\n';
-	
-	tcpConnector->Write( networkMessage );
+void User::Write( NetworkMessage& networkMessage )
+{
+	m_tcpConnector->Write( networkMessage );
 }
