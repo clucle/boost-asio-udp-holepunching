@@ -9,17 +9,19 @@
 
 #pragma once
 
+
 #include <memory>
 #include <mutex>
 #include <boost/asio.hpp>
-#include <network/TcpClient.h>
+#include "network/TcpClient.h"
+#include "network/UdpSocket.h"
 
 
 class TcpUser
 	: public std::enable_shared_from_this< TcpUser >
 {
 public:
-	typedef std::vector< std::pair< UInt32, UInt16 > > OtherUserVector;
+	typedef std::vector< UdpSocket > OtherUserVector;
 
 public:
 	TcpUser(
@@ -32,10 +34,14 @@ public:
 
 	void OnRead( NetworkMessage& networkMessage );
 
+	void Broadcast( std::string msg );
+
 private:
+	boost::asio::io_context& m_ioContext;
+
 	TcpClientPtr m_tcpClient;
 
-	OtherUserVector others;
+	OtherUserVector m_others;
 
 	std::mutex m_othersMutex;
 };

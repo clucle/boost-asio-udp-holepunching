@@ -153,10 +153,10 @@ int main( int argc, char* argv[] )
         } );
 
         // udp 통신할거
-        char line[ NetworkMessage::MAX_BODY_LENGTH + 1 ];
-        while ( std::cin.getline( line, NetworkMessage::MAX_BODY_LENGTH + 1 ) )
+        std::string str;
+        while ( std::cin >> str )
         {
-           
+            tcpClient.Broadcast( str );
         }
 
         tcpClient.Close();
