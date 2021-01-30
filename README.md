@@ -19,6 +19,9 @@ make
 ## Explanation
 [link]( https://clucle.tistory.com/entry/c-stun-p2p-chat )
 
+## Video
+[link]( https://www.youtube.com/watch?v=AvhqZXCkYcI )
+
 ## Goal
 - [X] get public IP & PORT from stun server
 - [X] p2p chat
