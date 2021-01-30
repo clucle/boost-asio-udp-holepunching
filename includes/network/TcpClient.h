@@ -20,16 +20,22 @@ using boost::asio::ip::tcp;
 
 typedef std::deque<NetworkMessage> NetworkMessageDeque;
 
-class TCPClient
+class TcpClient
+    : public std::enable_shared_from_this< TcpClient >
 {
 public:
-    TCPClient(
+    TcpClient(
         boost::asio::io_context& ioContext,
         const tcp::resolver::results_type& endpoints );
 
     void Write( const NetworkMessage& msg );
 
     void Close();
+
+    void SetReadCallback( std::function< void( NetworkMessage& ) > readCallback )
+    {
+        m_readCallback = readCallback;
+    }
 
 private:
     void _Connect( const tcp::resolver::results_type& endpoints );
@@ -45,4 +51,8 @@ private:
     tcp::socket m_socket;
     NetworkMessage m_networkMessage;
     NetworkMessageDeque m_networkMessageDeque;
+
+    std::function< void( NetworkMessage& ) > m_readCallback;
 };
+
+typedef std::shared_ptr< TcpClient > TcpClientPtr;

@@ -9,10 +9,10 @@
 
 #include <iostream>
 #include <boost/asio.hpp>
+#include "TcpUser.h"
 #include "core/RFC5389Builder.h"
 #include "common/utils.h"
 #include "network/UdpSocket.h"
-#include "network/TcpClient.h"
 #include "network/NetworkMessage.h"
 #include "server/SignalServerProtocol.h"
 
@@ -27,7 +27,7 @@ int main( int argc, char* argv[] )
         using boost::asio::ip::tcp;
         tcp::resolver resolver( ioContextTcp );
         auto endpoints = resolver.resolve( "192.168.0.29", "12111" );
-        TCPClient tcpClient( ioContextTcp, endpoints );
+        TcpUser tcpClient( ioContextTcp, endpoints );
 
         std::thread t( [&ioContextTcp]() { ioContextTcp.run(); } );
 

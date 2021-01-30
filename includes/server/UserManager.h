@@ -10,6 +10,7 @@
 #pragma once
 
 
+#include <mutex>
 #include "core/Singleton.h"
 #include "core/types.h"
 #include "User.h"
@@ -26,8 +27,12 @@ public:
 public:
 	UserPtr AddUser( tcp::socket socket );
 
+	void Register( UInt32 id, UInt32 ip, UInt16 port );
+
 private:
 	UserMap m_userMap;
 
 	AtomicUInt32 m_userId;
+
+	std::mutex m_userMutex;
 };

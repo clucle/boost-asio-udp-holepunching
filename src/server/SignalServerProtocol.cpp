@@ -9,6 +9,7 @@
 
 #include "SignalServerProtocol.h"
 #include "User.h"
+#include "UserManager.h"
 #include "common/utils.h"
 #include "network/UdpSocket.h"
 
@@ -47,16 +48,21 @@ void SignalServerProtocol::OnRecvMessage( NetworkMessage networkMessage )
 
 			chk.join();
 
+			UserPtr user = m_user.lock();
+			user->SetIP( ip );
+			user->SetPort( port );
 		}
 		break;
 	case ProtocolId::ProtocolRequestAddressResult:
 		{
 			std::cout << "check complete" << '\n';
+			UserPtr user = m_user.lock();
+			UserManager::GetInstance().Register( user->GetId(), user->GetIP(), user->GetPort() );
 		}
 		break;
 	}
 
-	UserPtr user = m_user.lock();
-	if ( user )
-		user->Write( networkMessage );
+	// UserPtr user = m_user.lock();
+	// if ( user )
+	// 	user->Write( networkMessage );
 }

@@ -8,7 +8,7 @@
 
 #include "TcpClient.h"
 
-TCPClient::TCPClient(
+TcpClient::TcpClient(
     boost::asio::io_context& ioContext,
     const tcp::resolver::results_type& endpoints )
     : m_ioContext( ioContext ),
@@ -17,7 +17,7 @@ TCPClient::TCPClient(
     _Connect( endpoints );
 }
 
-void TCPClient::Write( const NetworkMessage& msg )
+void TcpClient::Write( const NetworkMessage& msg )
 {
     boost::asio::post( m_ioContext,
         [this, msg]()
@@ -31,12 +31,12 @@ void TCPClient::Write( const NetworkMessage& msg )
         } );
 }
 
-void TCPClient::Close()
+void TcpClient::Close()
 {
     boost::asio::post( m_ioContext, [this]() { m_socket.close(); } );
 }
 
-void TCPClient::_Connect( const tcp::resolver::results_type& endpoints )
+void TcpClient::_Connect( const tcp::resolver::results_type& endpoints )
 {
     boost::asio::async_connect( m_socket, endpoints,
         [this]( boost::system::error_code ec, tcp::endpoint )
@@ -48,7 +48,7 @@ void TCPClient::_Connect( const tcp::resolver::results_type& endpoints )
         } );
 }
 
-void TCPClient::_ReadHeader()
+void TcpClient::_ReadHeader()
 {
     boost::asio::async_read( m_socket,
         boost::asio::buffer( m_networkMessage.GetData(), NetworkMessage::HEADER_LENGTH ),
@@ -65,7 +65,7 @@ void TCPClient::_ReadHeader()
         } );
 }
 
-void TCPClient::_ReadBody()
+void TcpClient::_ReadBody()
 {
     boost::asio::async_read( m_socket,
         boost::asio::buffer( m_networkMessage.GetBody(), m_networkMessage.GetBodyLength() ),
@@ -73,8 +73,7 @@ void TCPClient::_ReadBody()
         {
             if ( !ec )
             {
-                m_networkMessage.ReadyToRead();
-                std::cout << m_networkMessage.ReadString() << '\n';
+                m_readCallback( m_networkMessage );
 
                 _ReadHeader();
             }
@@ -85,7 +84,7 @@ void TCPClient::_ReadBody()
         } );
 }
 
-void TCPClient::_Write()
+void TcpClient::_Write()
 {
     boost::asio::async_write( m_socket,
         boost::asio::buffer( m_networkMessageDeque.front().GetData(),
