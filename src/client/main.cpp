@@ -129,13 +129,25 @@ int main( int argc, char* argv[] )
 
         }
 
-        std::thread recvUdp( [&udpSocket]() {
+        std::thread recvUdp( [ &udpSocket, &tcpClient ]() {
             while ( true )
             {
                 udpSocket.RecvFrom();
                 const char* packet = udpSocket.GetData();
                 size_t packetSize = udpSocket.GetDataLength();
-                std::cout << packet << '\n';
+
+                std::string str( packet, packet + packetSize );
+
+                if ( str == "chk" )
+                {
+                    NetworkMessage msg;
+                    msg.Append( ProtocolId::ProtocolRequestAddressResult );
+                    tcpClient.Write( msg );
+                }
+                else
+                {
+                    std::cout << str << '\n';
+                }
             }
         } );
 

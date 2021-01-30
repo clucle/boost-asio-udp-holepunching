@@ -23,12 +23,18 @@ void SignalServerProtocol::OnRecvMessage( NetworkMessage networkMessage )
 
 	switch ( protocol )
 	{
-		case ProtocolId::ProtocolRequestAddress:
+	case ProtocolId::ProtocolRequestAddress:
 		{
 			UInt32 ip   = networkMessage.Read< UInt32 >();
 			UInt16 port = networkMessage.Read< UInt16 >();
 			std::cout << "ip : " << ip << " port : " << port << '\n';
 		}
+		break;
+	case ProtocolId::ProtocolRequestAddressResult:
+		{
+			std::cout << "check complete" << '\n';
+		}
+		break;
 	}
 
 	UserPtr user = m_user.lock();
