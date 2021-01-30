@@ -21,6 +21,8 @@ public:
 	typedef boost::asio::ip::tcp tcp;
 
 public:
+	User();
+
 	User( tcp::socket socket );
 
 	void Initialize();

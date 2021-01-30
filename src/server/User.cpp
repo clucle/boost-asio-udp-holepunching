@@ -11,6 +11,15 @@
 #include <functional>
 
 
+User::User() :
+	m_tcpConnector( nullptr ),
+	m_id( 0 ),
+	m_registered( false ),
+	m_ip( 0 ),
+	m_port( 0 )
+{
+}
+
 User::User( tcp::socket socket ) :
 	m_tcpConnector( std::make_shared<TcpConnector>( std::move( socket ) ) ),
 	m_id( 0 ),
@@ -48,5 +57,6 @@ void User::OnRead( NetworkMessage& networkMessage )
 
 void User::Write( NetworkMessage& networkMessage )
 {
-	m_tcpConnector->Write( networkMessage );
+	if ( m_tcpConnector )
+		m_tcpConnector->Write( networkMessage );
 }

@@ -46,7 +46,7 @@ void UserManager::Register( UInt32 id, UInt32 ip, UInt16 port )
 			UInt32 userId = iter.first;
 
 			if ( userId == id )
-				break;
+				continue;
 
 			UserPtr other = iter.second;
 			if ( other->GetRegistered() )
@@ -69,4 +69,19 @@ void UserManager::Register( UInt32 id, UInt32 ip, UInt16 port )
 	}
 
 	m_userMutex.unlock();
+}
+
+void UserManager::AddTestUser( UInt32 id, UInt32 ip, UInt16 port )
+{
+	UserPtr user = std::make_shared< User >();
+	UInt32 userId = id;
+	user->SetId( userId );
+	user->SetRegistered( true );
+	user->SetIP( ip );
+	user->SetPort( port );
+
+	m_userMutex.lock();
+	m_userMap[ userId ] = user;
+	m_userMutex.unlock();
+
 }
