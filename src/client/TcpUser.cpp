@@ -83,7 +83,6 @@ void TcpUser::Broadcast( std::string msg )
 	m_othersMutex.lock();
 	for ( auto& other : m_others )
 	{
-		std::cout << "Send To Other\n";
 		other.SendTo( msg.c_str(), msg.size() );
 	}
 	m_othersMutex.unlock();

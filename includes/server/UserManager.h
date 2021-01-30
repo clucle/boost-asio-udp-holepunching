@@ -29,8 +29,6 @@ public:
 
 	void Register( UInt32 id, UInt32 ip, UInt16 port );
 
-	void AddTestUser( UInt32 id, UInt32 ip, UInt16 port );
-
 private:
 	UserMap m_userMap;
 
