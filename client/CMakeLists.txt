@@ -16,4 +16,8 @@ target_link_libraries(client ${Boost_LIBRARIES})
 target_link_libraries(client ${CMAKE_SOURCE_DIR}/build/core/libcore.a)
 target_link_libraries(client ${CMAKE_SOURCE_DIR}/build/network/libnetwork.a)
 
+set_target_properties(client PROPERTIES
+    CXX_STANDARD 17
+    CXX_EXTENSIONS OFF)
+
 install (TARGETS client DESTINATION bin)
