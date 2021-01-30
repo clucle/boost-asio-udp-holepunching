@@ -19,7 +19,7 @@
 class User;
 
 
-enum ProtocolId : UInt8
+enum class ProtocolId : UInt8
 {
 	// 서버에 udp 소켓 public address 패킷 검증 요청
 	ProtocolRequestAddress = 0,
@@ -32,7 +32,6 @@ enum ProtocolId : UInt8
 	// 유저 입장 시 다른 유저들에게 address 전달
 	ProtocolUserAddressNotify = 4,
 
-	MAX,
 };
 
 

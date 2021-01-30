@@ -14,35 +14,24 @@
 #include "network/UdpSocket.h"
 #include "network/TcpClient.h"
 #include "network/NetworkMessage.h"
+#include "server/SignalServerProtocol.h"
 
 
 int main( int argc, char* argv[] )
 {
     try
     {
-        boost::asio::io_context io_context;
+        // TCP 家南
+        boost::asio::io_context ioContextTcp;
 
         using boost::asio::ip::tcp;
-        tcp::resolver resolver( io_context );
+        tcp::resolver resolver( ioContextTcp );
         auto endpoints = resolver.resolve( "192.168.0.29", "12111" );
-        TCPClient c( io_context, endpoints );
+        TCPClient tcpClient( ioContextTcp, endpoints );
 
-        std::thread t( [&io_context]() { io_context.run(); } );
+        std::thread t( [&ioContextTcp]() { ioContextTcp.run(); } );
 
-        char line[ NetworkMessage::MAX_BODY_LENGTH + 1 ];
-        while ( std::cin.getline( line, NetworkMessage::MAX_BODY_LENGTH + 1 ) )
-        {
-            NetworkMessage msg;
-            msg.AppendString( line );
-            msg.EncodeHeader();
-            c.Write( msg );
-        }
-
-        c.Close();
-        t.join();
-
-
-        /*
+        // UDP 家南
         boost::asio::io_context ioContext;
         const char* stunServerAddr = "stun.l.google.com";
         const char* stunServerPort = "19302";
@@ -113,6 +102,14 @@ int main( int argc, char* argv[] )
                         PrintIP( ip );
 
                         std::cout << std::dec << "port   : " << port << '\n';
+
+                        NetworkMessage msg;
+                        msg.Append( ProtocolId::ProtocolRequestAddress );
+                        msg.Append( ip );
+                        msg.Append( port );
+                        msg.EncodeHeader();
+                        tcpClient.Write( msg );
+
                         break;
                     }
                 case STUN_FAMILY::IPv6:
@@ -131,7 +128,28 @@ int main( int argc, char* argv[] )
             }
 
         }
-        */
+
+        std::thread recvUdp( [&udpSocket]() {
+            while ( true )
+            {
+                udpSocket.RecvFrom();
+                const char* packet = udpSocket.GetData();
+                size_t packetSize = udpSocket.GetDataLength();
+                std::cout << packet << '\n';
+            }
+        } );
+
+        // udp 烹脚且芭
+        char line[ NetworkMessage::MAX_BODY_LENGTH + 1 ];
+        while ( std::cin.getline( line, NetworkMessage::MAX_BODY_LENGTH + 1 ) )
+        {
+           
+        }
+
+        tcpClient.Close();
+        t.join();
+
+
     }
     catch ( std::exception& e )
     {

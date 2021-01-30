@@ -12,11 +12,9 @@
 
 
 User::User( tcp::socket socket ) :
-	m_tcpConnector( std::make_shared<TcpConnector>( std::move( socket ) ) )
+	m_tcpConnector( std::make_shared<TcpConnector>( std::move( socket ) ) ),
+	m_id( 0 )
 {
-
-	std::cout << this << '\n';
-	std::cout << &(this->m_tcpConnector) << '\n';
 
 	m_tcpConnector->SetReadCallback(
 		std::bind( &User::OnRead, this, std::placeholders::_1 )

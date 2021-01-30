@@ -18,9 +18,18 @@ SignalServerProtocol::SignalServerProtocol( UserPtr user )
 void SignalServerProtocol::OnRecvMessage( NetworkMessage networkMessage )
 {
 	networkMessage.ReadyToRead();
-	std::cout << networkMessage.ReadString() << '\n';
+	
+	ProtocolId protocol = networkMessage.Read< ProtocolId >();
 
-	UserPtr a;
+	switch ( protocol )
+	{
+		case ProtocolId::ProtocolRequestAddress:
+		{
+			UInt32 ip   = networkMessage.Read< UInt32 >();
+			UInt16 port = networkMessage.Read< UInt16 >();
+			std::cout << "ip : " << ip << " port : " << port << '\n';
+		}
+	}
 
 	UserPtr user = m_user.lock();
 	if ( user )

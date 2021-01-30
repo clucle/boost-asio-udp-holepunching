@@ -20,10 +20,5 @@ UserPtr UserManager::AddUser( tcp::socket socket )
 	user->SetId( userId );
 	m_userMap[ userId ] = user;
 
-	for ( auto e : m_userMap )
-	{
-		std::cout << e.second->GetId() << '\n';
-	}
-
 	return user;
 }
