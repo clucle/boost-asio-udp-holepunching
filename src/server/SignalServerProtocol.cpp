@@ -9,6 +9,8 @@
 
 #include "SignalServerProtocol.h"
 #include "User.h"
+#include "common/utils.h"
+#include "network/UdpSocket.h"
 
 SignalServerProtocol::SignalServerProtocol( UserPtr user )
 {
@@ -27,7 +29,24 @@ void SignalServerProtocol::OnRecvMessage( NetworkMessage networkMessage )
 		{
 			UInt32 ip   = networkMessage.Read< UInt32 >();
 			UInt16 port = networkMessage.Read< UInt16 >();
-			std::cout << "ip : " << ip << " port : " << port << '\n';
+
+			if ( ip == 0 || port == 0 ) break;
+
+			std::thread chk( [ip, port]()
+				{
+					boost::asio::io_context ioContext;
+
+					std::string ipString = GetIPString( ip );
+					std::string portString = std::to_string( port );
+
+					std::cout << "Request ip : " << ipString << " port : " << portString << '\n';
+
+					UdpSocket udpSocket( ioContext, ipString, portString );
+					udpSocket.SendTo( "chk", 3 );
+				} );
+
+			chk.join();
+
 		}
 		break;
 	case ProtocolId::ProtocolRequestAddressResult:

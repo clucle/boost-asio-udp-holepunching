@@ -142,6 +142,7 @@ int main( int argc, char* argv[] )
                 {
                     NetworkMessage msg;
                     msg.Append( ProtocolId::ProtocolRequestAddressResult );
+                    msg.EncodeHeader();
                     tcpClient.Write( msg );
                 }
                 else
