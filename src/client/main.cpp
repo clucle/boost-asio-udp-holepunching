@@ -99,6 +99,25 @@ int main( int argc, char* argv[] )
                             ( address[ 2 ] << 8 ) |
                             ( address[ 3 ] << 0 );
                         ip ^= magicCookie;
+                        // PrintIP( ip );
+
+                        address[ 0 ] = 192;
+                        address[ 1 ] = 168;
+                        address[ 2 ] = 0;
+                        address[ 3 ] = 29;
+
+
+
+
+                        port = udpSocket.GetPort();
+
+                        
+
+                        ip =
+                            ( address[ 0 ] << 24 ) |
+                            ( address[ 1 ] << 16 ) |
+                            ( address[ 2 ] << 8 ) |
+                            ( address[ 3 ] << 0 );
                         PrintIP( ip );
 
                         std::cout << std::dec << "port   : " << port << '\n';

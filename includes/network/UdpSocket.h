@@ -31,6 +31,8 @@ public:
 
     size_t GetDataLength();
 
+    int GetPort() { return m_socket.local_endpoint().port(); }
+
 private:
     boost::asio::io_context& m_ioContext;
     udp::resolver::results_type m_endpoints;
